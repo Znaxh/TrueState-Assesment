@@ -95,8 +95,12 @@ function App() {
             const res = await fetch(`${API_BASE_URL}/api/sales?${queryParams}`);
             const data = await res.json();
 
-            setSalesData(data.data);
-            setPagination(data.pagination);
+            if (data.data) {
+                setSalesData(data.data);
+            }
+            if (data.pagination) {
+                setPagination(data.pagination);
+            }
         } catch (err) {
             console.error("Failed to fetch sales data", err);
         } finally {
